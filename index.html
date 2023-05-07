@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>To Do list</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg,rgb(241, 9, 113),blue);
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+        }
+        body::-webkit-scrollbar{
+            display: none;
+        }
+        .container{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            justify-content: space-between;
+           
+            /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); */
+        }
+        .container h1{
+            text-align: center;
+            font-family: sans-serif;
+            text-decoration: overline;
+            position: relative;
+            top: 30px;
+        }
+        .main {
+            padding: 30px 20px;
+            font-weight: bold;
+            border-radius: 15px;
+            width: 600px;
+            /* height: 130px; */
+            height: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            background-color: aquamarine;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+            
+        }
+        .main #addtask{
+            padding: 20px 10px;
+            border-radius: 20px;
+            width: 400px;
+            font-size: 1.6rem;
+        }
+        #addtask::placeholder{
+            font-size: 1.6rem;
+            justify-content: center;
+        }
+
+        .main #add{
+            border-radius: 15px;
+            background-color: greenyellow;
+            padding: 5px 20px;
+            font-weight: bold;
+        }
+        .tasks{
+            border: 1px solid black;
+            position: relative;
+            top: 50px;
+            background-color: aquamarine;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+        }
+        .tasks ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-left: 45px;
+            /* padding: 15px; */
+            font-size: 1.5rem;
+            list-style: upper-alpha;
+            color: white;
+        }
+        .tasks #box{
+            display: flex;
+            justify-content: space-between;
+            color: black;
+        }
+        i{
+            float: right;
+            position: relative;
+            right: 20px;
+            padding: 5px;
+            bottom: 5px;
+            font-size: 2rem;
+        }
+        #box li{
+             margin: 5px;
+             cursor: pointer;
+             border-bottom: 3px solid grey;
+        }
+        ul #date,#time{
+            margin: 10px;
+            float: right;
+        }
+        #box li:hover{
+            text-decoration: line-through  red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To Do list</h1>
+        <div class="main">
+            <input type="text" id="addtask" placeholder="Add task Here">
+            <button id="add" onclick="addnew()">Add task</button>
+        </div>
+        <div class="tasks">
+             <ul id="box"></ul>
+             
+        </div>
+    </div>
+    <script>
+        function addnew() {
+            let addtask = document.getElementById('addtask');
+            if (addtask.value === "") {
+                alert("Please enter a task!");
+            }else{
+               let addtask = document.getElementById('addtask').value;
+               let box = document.getElementById('box');
+               let li = document.createElement('li');
+               li.textContent = addtask;
+            //    li.innerHTML = addtask + "<input type='date' name='date' id='date'>" + "<input type='time' name='time' id='time'>"
+            // deleteButton.textContent = "Delete";
+               box.appendChild(li);
+
+        let deleteButton = document.createElement("i");
+        deleteButton.innerHTML = "<i class='fa-solid fa-trash-can'></i>"
+        deleteButton.addEventListener("click", function() {
+            li.remove();
+		});
+        li.appendChild(deleteButton);
+        }
+    
+    }
+    </script>
+</body>
+</html>
